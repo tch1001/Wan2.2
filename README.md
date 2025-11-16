@@ -94,7 +94,9 @@ Install dependencies:
 ```sh
 # Ensure torch >= 2.4.0
 # If the installation of `flash_attn` fails, try installing the other packages first and install `flash_attn` last
-pip install -r requirements.txt
+uv pip install -r requirements.txt
+wget https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.8cxx11abiTRUE-cp312-cp312-linux_x86_64.whl
+uv pip install --no-deps flash_attn-2.8.3+cu12torch2.8cxx11abiTRUE-cp312-cp312-linux_x86_64.whl
 # If you want to use CosyVoice to synthesize speech for Speech-to-Video Generation, please install requirements_s2v.txt additionally
 pip install -r requirements_s2v.txt
 ```
@@ -118,8 +120,14 @@ pip install -r requirements_s2v.txt
 
 Download models using huggingface-cli:
 ``` sh
-pip install "huggingface_hub[cli]"
-huggingface-cli download Wan-AI/Wan2.2-T2V-A14B --local-dir ./Wan2.2-T2V-A14B
+uvx hf download Wan-AI/Wan2.2-T2V-A14B --local-dir ./Wan2.2-T2V-A14B
+```
+
+Install relevant CUDA dependencies:
+```sh
+sudo apt-get install -y nvidia-cuda-toolkit
+sudo apt-get install -y nvidia-driver-535
+sudo apt install nvidia-utils-535
 ```
 
 Download models using modelscope-cli:
